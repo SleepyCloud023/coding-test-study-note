@@ -3,7 +3,7 @@ import argparse
 import os
 
 
-def boj_make_dir(problem_number: int, url='Change this line to URL of Problem', category='./Greedy'):
+def boj_make_dir(url: str, problem_number: int, category='./Greedy'):
     dir_path = f'{category}/boj_{problem_number}'
     file_path = f'{dir_path}/boj_{problem_number}.py'
     os.mkdir(f'{category}/boj_{problem_number}')

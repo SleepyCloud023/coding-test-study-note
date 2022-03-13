@@ -2,5 +2,7 @@
 	"prettier.tabWidth": 4,
 	"code-runner.runInTerminal": true,
 	"editor.comments.insertSpace": false,
-	"C_Cpp.vcFormat.indent.caseLabels": true
+	"C_Cpp.vcFormat.indent.caseLabels": true,
+	"prettier.useTabs": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode"
 }
