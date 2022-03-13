@@ -15,7 +15,6 @@ def get_min_point(num_limit: int, num_currernt: int, current_point_list: list):
 
 
 def count_max_subject(min_point_list: list, M):
-    min_point_list.sort()
     result = 0
     for point in min_point_list:
         if M - point >= 0:
