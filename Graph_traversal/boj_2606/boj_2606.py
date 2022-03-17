@@ -1,4 +1,5 @@
 # https://www.acmicpc.net/problem/2606
+# 바이러스
 # start: 2022-03-18 01:56:05 AM
 # end:   2022-03-18 02:03:05 AM
 

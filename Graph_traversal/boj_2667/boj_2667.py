@@ -1,4 +1,5 @@
 # https://www.acmicpc.net/problem/2667
+# 단지번호 붙이기
 # start: 2022-03-18 02:07:21 AM
 # end:   2022-03-18 02:22:00 AM
 
