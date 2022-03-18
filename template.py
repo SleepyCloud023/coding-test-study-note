@@ -14,7 +14,7 @@ def get_number_from_url(url: str) -> str:
         raise ValueError('can not find postfix number')
 
 
-def boj_make_dir(dir_path: str):
+def make_dir(dir_path: str):
     try:
         os.mkdir(dir_path)
     except:
@@ -22,7 +22,7 @@ def boj_make_dir(dir_path: str):
         print('update internal sourcefile')
 
 
-def boj_make_file(file_path: str, url: str, cur_time_stamp: str):
+def make_file(file_path: str, url: str, cur_time_stamp: str):
     with open(file_path, 'w') as fp:
         fp.write(f'# {url}\n')
         fp.write(f'# title: \n')
@@ -30,16 +30,16 @@ def boj_make_file(file_path: str, url: str, cur_time_stamp: str):
         fp.write(f'# end:   {cur_time_stamp}\n')
 
 
-def boj_make_template(url: str, category='./Greedy'):
+def make_template(prefix_site: str, url: str, category: str):
     cur_time = time.localtime()
     cur_time_stamp = time.strftime('%Y-%m-%d %I:%M:%S %p', cur_time)
 
     problem_number = get_number_from_url(url)
-    dir_path = f'{category}/boj_{problem_number}'
-    file_path = f'{dir_path}/boj_{problem_number}.py'
+    dir_path = f'{category}/{prefix_site}_{problem_number}'
+    file_path = f'{dir_path}/{prefix_site}_{problem_number}.py'
 
-    boj_make_dir(dir_path)
-    boj_make_file(file_path, url, cur_time_stamp)
+    make_dir(dir_path)
+    make_file(file_path, url, cur_time_stamp)
 
 
 if __name__ == '__main__':
