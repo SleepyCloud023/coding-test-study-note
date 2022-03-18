@@ -9,60 +9,41 @@ input = sys.stdin.readline
 
 
 # 1: 익은 토마토, 0: 익지 않은 토마토, -1: 빈 칸
-def bfs(M, N, matrix, start):
-    count = 0
-    changed_tomato = []
-
+def bfs(M: int, N: int, matrix: list, good_tomato: list):
+    bfs_q = deque(good_tomato)
     di = [-1, 1, 0, 0]
     dj = [0, 0, -1, 1]
 
-    i, j = start
+    while(bfs_q):
+        i, j = bfs_q.popleft()
 
-    for dir in range(4):
-        #print(i, dir)
-        ni = i + di[dir]
-        nj = j + dj[dir]
+        for dir in range(4):
+            ni = i + di[dir]
+            nj = j + dj[dir]
 
-        if ni < 0 or nj < 0 or ni >= M or nj >= N:
-            continue
+            if ni < 0 or nj < 0 or ni >= M or nj >= N:
+                continue
 
-        # 전파 방향의 토마토가 익지 않은 토마토인 경우
-        if matrix[ni][nj] == 0:
-            matrix[ni][nj] = 1
-            count += 1
-            changed_tomato.append((ni, nj))
-
-    return count, changed_tomato
+            # 전파 방향의 토마토가 익지 않은 토마토인 경우
+            if matrix[ni][nj] == 0:
+                matrix[ni][nj] = matrix[i][j] + 1
+                bfs_q.append((ni, nj))
 
 
 def count_day(M, N, matrix, good_tomato: list):
-    num_day = 0
-
-    while(True):
-        count = 0
-        next_tomato = []
-
-        # 어제 익은 토마토를 순회하며 전파
-        for (i, j) in good_tomato:
-            count_changed, tomato_changed = bfs(M, N, matrix, (i, j))
-            count += count_changed
-            next_tomato += tomato_changed
-
-        if count == 0:
-            break
-
-        num_day += 1
-        good_tomato = next_tomato
-
+    max_tomato = 0
     has_yet_tomato = False
 
-    for i in range(M):
-        for j in range(N):
-            if matrix[i][j] == 0:
-                has_yet_tomato = True
-                break
+    bfs(M, N, matrix, good_tomato)
 
-    return -1 if has_yet_tomato else num_day
+    for row in matrix:
+        for cur_tomato in row:
+            if cur_tomato == 0:
+                has_yet_tomato = True
+            else:
+                max_tomato = max(max_tomato, cur_tomato)
+
+    return -1 if has_yet_tomato else (max_tomato - 1)
 
 
 if __name__ == '__main__':
@@ -72,10 +53,11 @@ if __name__ == '__main__':
 
     for i in range(height):
         row = list(map(int, input().split()))
+        matrix.append(row)
+
         for j in range(width):
             if row[j] == 1:
                 good_tomato.append((i, j))
-        matrix.append(row)
 
     result = count_day(height, width, matrix, good_tomato)
     print(result)
