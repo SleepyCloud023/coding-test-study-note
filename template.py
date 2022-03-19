@@ -39,7 +39,7 @@ def get_info_from_url(url: str, title: str) -> str:
 
 def get_title_text(url: str) -> str:
     title_text = ''
-    # NOTE: BOJ 페이지 => requests 라이브러리의 get 메소드 사용시 403 status 반환
+    # NOTE: BOJ 페이지 => requests 라이브러리 get 메소드 사용시 403 status 반환
     scraper = cfscrape.create_scraper()
     problem_page = scraper.get(url).content
     soup = BeautifulSoup(problem_page, 'html.parser')
