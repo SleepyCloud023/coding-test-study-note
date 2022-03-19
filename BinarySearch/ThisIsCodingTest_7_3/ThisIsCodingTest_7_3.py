@@ -7,7 +7,7 @@ import sys
 input = sys.stdin.readline
 
 
-def get_min_H(goal: int, num_choco: int, choco_list):
+def get_min_H(goal: int, choco_list):
     result = 0
     start = 0
     end = max(choco_list)
@@ -33,5 +33,5 @@ def get_min_H(goal: int, num_choco: int, choco_list):
 if __name__ == '__main__':
     num_choco, goal = map(int, input().split())
     choco_list = list(map(int, input().split()))
-    result = get_min_H(goal, num_choco, choco_list)
+    result = get_min_H(goal, choco_list)
     print(result)
