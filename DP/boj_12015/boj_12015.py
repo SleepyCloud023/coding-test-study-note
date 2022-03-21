@@ -3,7 +3,7 @@
 # start: 2022-03-21 10:21:38 AM
 # end:   2022-03-21 10:31:38 AM
 
-# 나무위키 설명 참조
+# NOTE: 나무위키 설명 참조
 
 from bisect import bisect_left
 
